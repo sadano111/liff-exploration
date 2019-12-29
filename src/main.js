@@ -9,15 +9,18 @@ import "buefy/dist/buefy.css";
 Vue.config.productionTip = false;
 Vue.use(Buefy);
 
-window.liff.init({
-  liffId: "1653651913-rzZXA2dX"
-}).then(() => {
-  console.log("LIFF Ready")
-  new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount("#app");
-}).catch((err) => {
-  console.log(err);
-});
+window.liff
+  .init({
+    liffId: "1653651913-rzZXA2dX"
+  })
+  .then(() => {
+    console.log("LIFF Ready");
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount("#app");
+  })
+  .catch(err => {
+    console.log(err);
+  });

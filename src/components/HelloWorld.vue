@@ -2,13 +2,21 @@
   <div class="container">
     <h1>{{ msg }}</h1>
     <div class="buttons">
-      <button v-if="!isLogin" class="button is-primary" v-on:click="login">Login</button>
-      <button v-else class="button is-danger" v-on:click="logout">Logout</button>
+      <button v-if="!isLogin" class="button is-primary" v-on:click="login">
+        Login
+      </button>
+      <button v-else class="button is-danger" v-on:click="logout">
+        Logout
+      </button>
       <button class="button is-link" v-on:click="openAnother">Open</button>
-      <button v-if="isLogin" class="button is-success" v-on:click="getAccessToken">Get Access Token</button>
-      <div v-if="isLogin" class="container">
-        {{userData.userId}}
-      </div>
+      <button
+        v-if="isLogin"
+        class="button is-success"
+        v-on:click="getAccessToken"
+      >
+        Get Access Token
+      </button>
+      <div v-if="isLogin" class="container">{{ userData.userId }}</div>
     </div>
   </div>
 </template>
@@ -20,7 +28,12 @@ export default {
     msg: String
   },
   data: function() {
-    return { isLogin: false, userData: null };
+    return {
+      isLogin: false,
+      userData: {
+        userId: null
+      }
+    };
   },
   methods: {
     login() {
@@ -38,7 +51,8 @@ export default {
     },
     getAccessToken() {
       const accessToken = window.liff.getAccessToken();
-      console.log(accessToken);
+      alert(accessToken);
+      // console.log(accessToken);
     }
   },
   mounted: function() {
