@@ -14,7 +14,7 @@ window.liff
     liffId: "1653651913-rzZXA2dX"
   })
   .then(() => {
-    console.log("LIFF Ready");
+    // console.log("LIFF Ready");
     new Vue({
       router,
       store,
@@ -22,5 +22,5 @@ window.liff
     }).$mount("#app");
   })
   .catch(err => {
-    console.log(err);
+    alert(err);
   });
