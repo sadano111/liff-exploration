@@ -36,14 +36,16 @@
       </div>
       <div v-if="isLogin" class="content">
         <h2 class="title">My Notes</h2>
-        <div class="columns">
+        <div class="columns is-multiline">
           <div class="column" v-for="(note, index) in notes" :key="index">
             <div class="box">
-              <p>
-                {{ note }}
-              </p>
+              <p>{{ note }}</p>
               <div class="buttons">
-                <button class="button is-link" v-on:click="submit(index)">
+                <button
+                  v-if="isClient"
+                  class="button is-link"
+                  v-on:click="submit(index)"
+                >
                   Send To Chat
                 </button>
                 <button
@@ -74,6 +76,7 @@ export default {
         userId: null,
         pictureUrl: null
       },
+      isClient: false,
       message: null,
       notes: []
     };
@@ -152,6 +155,7 @@ export default {
         this.userData = value;
         this.loadLocalStorage(this.userData.userId);
       });
+      this.isClient = window.liff.isInClient();
     }
   }
 };
