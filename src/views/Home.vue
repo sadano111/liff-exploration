@@ -7,6 +7,10 @@
             Please login first. To use our apps.
           </div>
           <div v-else>
+            <figure class="image is-128x128">
+              <img v-if="userData.pictureUrl" src="userData.pictureUrl" />
+              <img v-else src="@/assets/user.png" />
+            </figure>
             <b-field label="Name">
               <b-input v-model="message"></b-input>
               <button class="button" v-on:click="submit">Submit</button>
@@ -39,7 +43,8 @@ export default {
     return {
       isLogin: false,
       userData: {
-        userId: null
+        userId: null,
+        pictureUrl: null
       },
       message: null
     };
