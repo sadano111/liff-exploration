@@ -76,7 +76,7 @@ export default {
         .sendMessages([
           {
             type: "text",
-            text: message
+            text: this.message
           }
         ])
         .then(() => {
