@@ -8,13 +8,17 @@
           </div>
           <div class="content" v-else>
             <figure class="image is-128x128">
-              <img v-if="userData.pictureUrl" :src="userData.pictureUrl" />
-              <img v-else src="@/assets/user.png" />
+              <img
+                class="is-rounded"
+                v-if="userData.pictureUrl"
+                :src="userData.pictureUrl"
+              />
+              <img class="is-rounded" v-else src="@/assets/user.png" />
             </figure>
-            <b-field label="Name">
+            <b-field label="Message">
               <b-input v-model="message"></b-input>
-              <button class="button" v-on:click="submit">Submit</button>
             </b-field>
+            <button class="button" v-on:click="addNote">Submit</button>
           </div>
           <div class="buttons">
             <button class="button is-link" v-on:click="openAnother">
@@ -27,6 +31,30 @@
             >
               Get Access Token
             </button>
+          </div>
+        </div>
+      </div>
+      <div v-if="isLogin" class="content">
+        <h2 class="title">My Notes</h2>
+        <div class="columns">
+          <div class="column" v-for="(note, index) in notes" :key="index">
+            <div class="box">
+              <p>
+                {{ note }}
+              </p>
+              <div class="buttons">
+                <button class="button is-link" v-on:click="submit(index)">
+                  Send To Chat
+                </button>
+                <button
+                  v-if="isLogin"
+                  class="button is-danger"
+                  v-on:click="deleteNote(index)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -46,7 +74,8 @@ export default {
         userId: null,
         pictureUrl: null
       },
-      message: null
+      message: null,
+      notes: []
     };
   },
   methods: {
@@ -68,7 +97,15 @@ export default {
       alert(accessToken);
       // console.log(accessToken);
     },
-    submit() {
+    addNote() {
+      this.notes.push(this.message);
+      this.message = "";
+    },
+    deleteNote(index) {
+      this.notes.splice(index, 1);
+    },
+    submit(index) {
+      let message = this.notes[index];
       const loadingComponent = this.$buefy.loading.open({
         container: null
       });
@@ -76,7 +113,7 @@ export default {
         .sendMessages([
           {
             type: "text",
-            text: this.message
+            text: message
           }
         ])
         .then(() => {
@@ -93,13 +130,27 @@ export default {
             type: "is-danger"
           });
         });
+    },
+    loadLocalStorage(userId) {
+      const notesList = JSON.parse(localStorage.getItem(`notes-${userId}`));
+      if (notesList == null) {
+        return;
+      }
+      this.notes = notesList;
     }
   },
-  mounted: function() {
+  watch: {
+    notes() {
+      let userId = this.userData.userId;
+      localStorage.setItem(`notes-${userId}`, JSON.stringify(this.notes));
+    }
+  },
+  created: function() {
     this.isLogin = window.liff.isLoggedIn();
     if (this.isLogin) {
       window.liff.getProfile().then(value => {
         this.userData = value;
+        this.loadLocalStorage(this.userData.userId);
       });
     }
   }
