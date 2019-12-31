@@ -1,16 +1,27 @@
 <template>
-  <div class="home">
-    <div class="buttons">
-      <button class="button is-link" v-on:click="openAnother">Open</button>
-      <button
-        v-if="isLogin"
-        class="button is-success"
-        v-on:click="getAccessToken"
-      >
-        Get Access Token
-      </button>
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <div v-if="!isLogin" class="content">
+            Please login first. To use our apps.
+          </div>
+          <div class="buttons">
+            <button class="button is-link" v-on:click="openAnother">
+              Open Author Personal Web
+            </button>
+            <button
+              v-if="isLogin"
+              class="button is-success"
+              v-on:click="getAccessToken"
+            >
+              Get Access Token
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -36,7 +47,7 @@ export default {
     },
     openAnother() {
       window.liff.openWindow({
-        url: "https://line.me",
+        url: "https://www.berviantoleo.my.id",
         external: true
       });
     },
