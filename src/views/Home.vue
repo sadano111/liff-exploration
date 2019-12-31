@@ -8,7 +8,7 @@
           </div>
           <div v-else>
             <figure class="image is-128x128">
-              <img v-if="userData.pictureUrl" src="userData.pictureUrl" />
+              <img v-if="userData.pictureUrl" src="{{userData.pictureUrl}}" />
               <img v-else src="@/assets/user.png" />
             </figure>
             <b-field label="Name">
