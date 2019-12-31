@@ -6,6 +6,12 @@
           <div v-if="!isLogin" class="content">
             Please login first. To use our apps.
           </div>
+          <div v-else>
+            <b-field label="Name">
+              <b-input v-model="message"></b-input>
+              <button class="button" v-on:click="submit">Submit</button>
+            </b-field>
+          </div>
           <div class="buttons">
             <button class="button is-link" v-on:click="openAnother">
               Open Author Personal Web
@@ -34,7 +40,8 @@ export default {
       isLogin: false,
       userData: {
         userId: null
-      }
+      },
+      message: null
     };
   },
   methods: {
@@ -55,6 +62,32 @@ export default {
       const accessToken = window.liff.getAccessToken();
       alert(accessToken);
       // console.log(accessToken);
+    },
+    submit() {
+      const loadingComponent = this.$buefy.loading.open({
+        container: null
+      });
+      window.liff
+        .sendMessages([
+          {
+            type: "text",
+            text: message
+          }
+        ])
+        .then(() => {
+          loadingComponent.close();
+          this.$buefy.notification.open({
+            message: "Success Send Message",
+            type: "is-success"
+          });
+        })
+        .catch(err => {
+          loadingComponent.close();
+          this.$buefy.notification.open({
+            message: "Can't Send Message!",
+            type: "is-danger"
+          });
+        });
     }
   },
   mounted: function() {
