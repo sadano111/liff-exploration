@@ -6,9 +6,9 @@
           <div v-if="!isLogin" class="content">
             Please login first. To use our apps.
           </div>
-          <div v-else>
+          <div class="content" v-else>
             <figure class="image is-128x128">
-              <img v-if="userData.pictureUrl" src="{{userData.pictureUrl}}" />
+              <img v-if="userData.pictureUrl" :src="userData.pictureUrl" />
               <img v-else src="@/assets/user.png" />
             </figure>
             <b-field label="Name">
@@ -89,7 +89,7 @@ export default {
         .catch(err => {
           loadingComponent.close();
           this.$buefy.notification.open({
-            message: "Can't Send Message!",
+            message: `Can't Send Message! Error: ${err}`,
             type: "is-danger"
           });
         });
