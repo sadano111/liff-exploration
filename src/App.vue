@@ -5,12 +5,5 @@
   </div>
 </template>
 
-<script>
-import MyNavBar from "@/components/MyNavBar.vue";
-
-export default {
-  components: {
-    "my-nav-bar": MyNavBar
-  }
-};
+<script lang="ts" src="./App.ts">
 </script>
