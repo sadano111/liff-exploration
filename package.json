@@ -22,7 +22,7 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.5",
+    "@types/jest": "^26.0.7",
     "@vue/cli-plugin-babel": "^4.4.6",
     "@vue/cli-plugin-e2e-cypress": "^4.4.6",
     "@vue/cli-plugin-pwa": "^4.4.6",
