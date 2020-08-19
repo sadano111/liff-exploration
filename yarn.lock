@@ -1790,7 +1790,7 @@
   optionalDependencies:
     vue-loader-v16 "npm:vue-loader@^16.0.0-beta.3"
 
-"@vue/cli-shared-utils@^4.5.3", "@vue/cli-shared-utils@^4.5.4":
+"@vue/cli-shared-utils@^4.5.4":
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.4.tgz#ed36b2971dc02653f7f2ad4e66bbe9510e1bd414"
   integrity sha512-7ZwAvGxl5szGuaJCc4jdPy/2Lb7oJvG847MDF+7pZ7FVl6bURwbUJjiUwL6DTxvpC4vch6B4tXfVvZFjzVP/bw==
@@ -2813,10 +2813,10 @@ bser@2.1.1:
   dependencies:
     node-int64 "^0.4.0"
 
-buefy@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.9.0.tgz#564e92e18e32da9c9827be12dfd216275818f449"
-  integrity sha512-RGe2/LG+IBtWn6pzCpAZm/Qf9q2ckcv8amlTJjKmvuCiC3JjtJjJvu4tMcrapncJOgKPufpHGxep738MypnPwA==
+buefy@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.9.1.tgz#741c40e00a6e5ee807533e338cec2b2c764cb5f2"
+  integrity sha512-xS4UkNzliPKHYEHB+k1tUjdKiuozQSxxhTrOI3Oh391cYAN66op6ZAzn4WiLQtKMR968XwmFj9WvFAJMdLc/cw==
   dependencies:
     bulma "0.9.0"
 
