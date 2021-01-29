@@ -1,25 +1,25 @@
 name: Node CI
-
-on: [push]
-
+on: [push, pull_request]
 jobs:
-  build:
-
+  build-test:
+    name: Build & Test
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [12.x, 13.x]
-
+        node-version: [12.x, 14.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: yarn, yarn build
+    - name: yarn, yarn build, yarn test
       run: |
         yarn
         yarn build
+        yarn test:unit --coverage
       env:
         CI: true
+    - name: Upload coverage
+      if: ${{ matrix.node-version == 12.x }}
+      run: bash <(curl -s https://codecov.io/bash)
