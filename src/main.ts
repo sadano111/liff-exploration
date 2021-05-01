@@ -23,5 +23,10 @@ liff
     }).$mount('#app');
   })
   .catch((err: any) => {
-    alert(err);
+    // console.log(err.code, err.message);
+    if (liff.isInClient()) {
+      liff.closeWindow();
+    } else {
+      alert(err);
+    }
   });
