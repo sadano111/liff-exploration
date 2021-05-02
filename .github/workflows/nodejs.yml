@@ -17,7 +17,7 @@ jobs:
       run: |
         yarn
         yarn build
-# yarn test:unit
+        yarn test:unit
       env:
         CI: true
     - name: Upload coverage
