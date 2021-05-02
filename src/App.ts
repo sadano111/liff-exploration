@@ -1,8 +1,7 @@
-import Components from 'vue-class-component'
-import Vue from 'vue'
-import MyNavBar from '@/components/MyNavBar.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import MyNavBar from '@/components/MyNavBar.vue';
 
-@Components({
+@Component({
   components: {
     'my-nav-bar': MyNavBar,
   },

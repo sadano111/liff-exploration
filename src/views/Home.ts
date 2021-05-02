@@ -1,9 +1,7 @@
-import Components from 'vue-class-component';
-import Vue from 'vue';
-import { Watch } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import liff from '@line/liff';
 
-@Components({
+@Component({
   name: 'home'
 })
 export default class Home extends Vue {

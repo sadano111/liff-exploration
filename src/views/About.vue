@@ -8,3 +8,7 @@
     </div>
   </section>
 </template>
+
+<script lang="ts" src="./About.ts">
+
+</script>
