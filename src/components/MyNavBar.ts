@@ -1,46 +1,49 @@
-import Vue from 'vue';
-import Components from 'vue-class-component';
+import { defineComponent } from 'vue';
 import liff from '@line/liff';
 
-@Components({
+export default defineComponent({
   name: 'MyNavBar',
-})
-export default class MyNavBar extends Vue {
-  protected isLogin = false
-
-  protected userData: any = {
-    userId: null,
-    displayName: null,
-  }
-
-  public mounted() {
+  data() {
+    return {
+      isLogin: false,
+      activator: false,
+      userData: {
+        userId: '',
+        displayName: '',
+      },
+    };
+  },
+  mounted() {
     this.isLogin = liff.isLoggedIn();
     if (this.isLogin) {
       liff.getProfile().then((value) => {
-        this.userData = value;
+        this.userData.userId = value.userId;
+        this.userData.displayName = value.displayName;
       });
     }
-  }
-
-  protected login() {
-    liff.login();
-  }
-
-  protected logout() {
-    liff.logout();
-    window.location.reload();
-  }
-
-  protected openAnother() {
-    liff.openWindow({
-      url: 'https://line.me',
-      external: true,
-    });
-  }
-
-  protected getAccessToken() {
-    const accessToken = liff.getAccessToken();
-    alert(accessToken);
-    // console.log(accessToken);
-  }
-}
+  },
+  methods: {
+    makeBurger() {
+      this.activator = !this.activator;
+      return this.activator;
+    },
+    login() {
+      liff.login();
+    },
+    logout() {
+      liff.logout();
+      window.location.reload();
+    },
+    openAnother() {
+      liff.openWindow({
+        url: 'https://line.me',
+        external: true,
+      });
+    },
+    getAccessToken() {
+      const accessToken = liff.getAccessToken();
+      alert(accessToken);
+      // console.log(accessToken);
+    },
+  },
+});

@@ -1,8 +1,5 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { defineComponent } from 'vue';
 
-@Component({
-  name: 'about',
-})
-export default class About extends Vue {
-
-}
+export default defineComponent({
+  name: 'aboutPage',
+});

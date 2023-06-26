@@ -1,14 +1,16 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import liff from '@line/liff';
-import Buefy from 'buefy';
+import Oruga from '@oruga-ui/oruga-next';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import 'buefy/dist/buefy.css';
+import '@oruga-ui/theme-bulma/dist/bulma.css';
 
-Vue.config.productionTip = false;
-Vue.use(Buefy);
+const app = createApp(App);
+app.use(router);
+app.use(store);
+app.use(Oruga);
 
 liff
   .init({
@@ -16,11 +18,7 @@ liff
   })
   .then(() => {
     // console.log("LIFF Ready");
-    new Vue({
-      router,
-      store,
-      render: (h) => h(App),
-    }).$mount('#app');
+    app.mount('#app');
   })
   .catch((err: any) => {
     // console.log(err.code, err.message);
