@@ -9,9 +9,9 @@
               <img class="is-rounded" v-if="userData.pictureUrl" :src="userData.pictureUrl" />
               <img class="is-rounded" v-else src="@/assets/user.png" />
             </figure>
-            <b-field label="Message">
-              <b-input v-model="message"></b-input>
-            </b-field>
+            <o-field label="Message">
+              <o-input v-model="message"></o-input>
+            </o-field>
             <button class="button" v-on:click="addNote">Submit</button>
           </div>
           <div class="buttons">

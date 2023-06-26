@@ -1,9 +1,8 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { defineComponent } from 'vue';
 import MyNavBar from '@/components/MyNavBar.vue';
 
-@Component({
+export default defineComponent({
   components: {
     'my-nav-bar': MyNavBar,
   },
-})
-export default class App extends Vue { }
+});

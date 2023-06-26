@@ -1,9 +1,6 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import liff from '@line/liff';
 import Home from '@/views/HomePage.vue';
-
-Vue.use(VueRouter);
 
 const routes = [
   {
@@ -20,13 +17,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutPage.vue'),
   },
   {
-    path: '*',
+    path: '/:pathMatch(.*)',
     name: 'default',
     component: Home,
   },
 ];
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHashHistory(),
   routes,
 });
 
