@@ -20,6 +20,7 @@ liff
     // console.log("LIFF Ready");
     app.mount('#app');
   })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   .catch((err: any) => {
     // console.log(err.code, err.message);
     if (liff.isInClient()) {

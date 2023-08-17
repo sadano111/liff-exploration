@@ -19,6 +19,7 @@ export default defineComponent({
       userId: null,
       pictureUrl: null,
     });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     watch(notes, async (newNotes, _) => {
       if (Array.isArray(newNotes)) {
         const { userId } = userData.value;
@@ -47,6 +48,7 @@ export default defineComponent({
     created() {
       this.isLogin = liff.isLoggedIn();
       if (this.isLogin) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         liff.getProfile().then((value: any) => {
           this.userData = value;
           this.loadLocalStorage(this.userData.userId);
@@ -79,9 +81,11 @@ export default defineComponent({
       this.notes.push(this.message);
       this.message = '';
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     deleteNote(index: any) {
       this.notes.splice(index, 1);
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     submit(index: any) {
       const message = this.notes[index];
       const loadingComponent = this.oruga.loading.open({
@@ -101,6 +105,7 @@ export default defineComponent({
             type: 'success',
           });
         })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .catch((err: any) => {
           loadingComponent.close();
           this.showNotification({
