@@ -1,11 +1,11 @@
 import liff from '@line/liff';
-import { useProgrammatic } from '@oruga-ui/oruga-next';
+import { useOruga } from '@oruga-ui/oruga-next';
 import { defineComponent, ref, watch } from 'vue';
 
 export default defineComponent({
   name: 'homePage',
   setup() {
-    const { oruga } = useProgrammatic();
+    const oruga = useOruga();
     function showNotification({ message, type }: {message: string, type: string}) {
       oruga.notification.open({
         message,
@@ -88,9 +88,7 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     submit(index: any) {
       const message = this.notes[index];
-      const loadingComponent = this.oruga.loading.open({
-        container: null,
-      });
+      const loadingComponent = this.oruga.loading.open({});
       liff
         .sendMessages([
           {
@@ -99,7 +97,7 @@ export default defineComponent({
           },
         ])
         .then(() => {
-          loadingComponent.close();
+          loadingComponent.close({});
           this.showNotification({
             message: 'Success Send Message',
             type: 'success',
@@ -107,7 +105,7 @@ export default defineComponent({
         })
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .catch((err: any) => {
-          loadingComponent.close();
+          loadingComponent.close({});
           this.showNotification({
             message: `Can't Send Message! Error: ${err}`,
             type: 'danger',
