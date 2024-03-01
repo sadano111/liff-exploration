@@ -12,7 +12,7 @@
   "dependencies": {
     "@line/liff": "^2.23.1",
     "@oruga-ui/oruga-next": "0.8.2",
-    "@oruga-ui/theme-bulma": "^0.2.11",
+    "@oruga-ui/theme-bulma": "^0.3.0",
     "core-js": "^3.35.1",
     "register-service-worker": "^1.7.2",
     "tslint-config-prettier": "^1.18.0",
